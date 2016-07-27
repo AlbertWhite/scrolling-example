@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+.parallax {
+    position: absolute;
+    width: 100%;
+    background-image: url("dist/img/hero.png");
+    min-height: 27000px;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.stage{
+	background-image: url("dist/img/stage.jpg");
+	height: 2700px;
+}
+
+.header{
+    height:50px;
+    width:100%;
+    background-color: blue;
+    position: fixed;
+    transition:background-color 2s;
+}
+
+</style>
+<script   src="https://code.jquery.com/jquery-2.2.4.min.js"   integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="   crossorigin="anonymous"></script>
+</head>
+<body>
+<div class="header">
+</div>
+
+<div class="parallax">
+</div>
+
+<div class="stage">
+</div>
+
+<div class="stage">
+</div>
+
+<div class="stage">
+</div>
+<script type="text/javascript">
+
+var didScroll;
+var lastScrollTop = 0;
+var delta = 100;
+var navbarHeight = $('header').outerHeight();
+
+$(window).scroll(function(event){
+    didScroll = true;
+    //console.log($(this).scrollTop());
+});
+
+ setInterval(function() {
+    if (didScroll) {
+        hasScrolled();
+        didScroll = false;
+    }
+}, 250);
+
+function hasScrolled() {
+    var st = $(this).scrollTop();//control the st is enough show or hide
+
+    if(Math.abs(lastScrollTop - st) <= delta)
+        return;
+    
+    if (st > lastScrollTop){
+        //console.log("hide "+st);
+        $('.header').css("background-color","rgba(0,0,0,0)");
+    } else {
+        //console.log("show "+st);
+        $('.header').css("background-color","rgba(0,0,255,1)");
+    }
+    
+    lastScrollTop = st;
+}
+</script>
+</body>
+</html>
